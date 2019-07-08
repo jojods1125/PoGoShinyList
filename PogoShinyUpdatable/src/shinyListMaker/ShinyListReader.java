@@ -17,10 +17,10 @@ public class ShinyListReader {
 
 	/** List of normal shiny Pokemon filenames */
 	private String[] shiniesDefault;
-	
+
 	/** List of alola shiny Pokemon filenames */
 	private String[] shiniesAlola;
-	
+
 	/** List of costume shiny Pokemon filenames */
 	private String[] shiniesSpecial;
 
@@ -52,15 +52,38 @@ public class ShinyListReader {
 			Sorter<String> sort = new MergeSorter<String>();
 			sort.sort(shiniesDefault);
 
-			// If more alolan Pokemon come into existence for some ungodly reason, put them
-			// here
-			shiniesAlola = new String[] { "pokemon_icon_019_61_shiny.png", "pokemon_icon_020_61_shiny.png",
-					"pokemon_icon_026_61_shiny.png", "pokemon_icon_027_61_shiny.png", "pokemon_icon_028_61_shiny.png",
-					"pokemon_icon_037_61_shiny.png", "pokemon_icon_038_61_shiny.png", "pokemon_icon_050_61_shiny.png",
-					"pokemon_icon_051_61_shiny.png", "pokemon_icon_052_61_shiny.png", "pokemon_icon_053_61_shiny.png",
-					"pokemon_icon_074_61_shiny.png", "pokemon_icon_075_61_shiny.png", "pokemon_icon_076_61_shiny.png",
-					"pokemon_icon_088_61_shiny.png", "pokemon_icon_089_61_shiny.png", "pokemon_icon_103_61_shiny.png",
-					"pokemon_icon_105_61_shiny.png" };
+			// If more shiny forms come out, add to shinyFormsAvailable file
+			// Runs through the shinyFormsAvailable file and records number of lines
+			Scanner sizerFo = new Scanner(new FileInputStream("assets/shinyFormsAvailable"));
+			int sizeFo = 0;
+			while (sizerFo.hasNext()) {
+				sizeFo++;
+				sizerFo.next();
+			}
+			sizerFo.close();
+
+			// Runs through the shinyFormsAvailable file and gets png filenames
+			Scanner scanFo = new Scanner(new FileInputStream("assets/shinyFormsAvailable"));
+			int idxFo = 0;
+			shiniesAlola = new String[sizeFo];
+			while (scanFo.hasNext()) {
+				shiniesAlola[idxFo] = scanFo.next();
+				idxFo++;
+			}
+			scanFo.close();
+
+			// Sort the special files so they're in numerical order
+			sort.sort(shiniesAlola);
+
+//			// If more alolan Pokemon come into existence for some ungodly reason, put them
+//			// here
+//			shiniesAlola = new String[] { "pokemon_icon_019_61_shiny.png", "pokemon_icon_020_61_shiny.png",
+//					"pokemon_icon_026_61_shiny.png", "pokemon_icon_027_61_shiny.png", "pokemon_icon_028_61_shiny.png",
+//					"pokemon_icon_037_61_shiny.png", "pokemon_icon_038_61_shiny.png", "pokemon_icon_050_61_shiny.png",
+//					"pokemon_icon_051_61_shiny.png", "pokemon_icon_052_61_shiny.png", "pokemon_icon_053_61_shiny.png",
+//					"pokemon_icon_074_61_shiny.png", "pokemon_icon_075_61_shiny.png", "pokemon_icon_076_61_shiny.png",
+//					"pokemon_icon_088_61_shiny.png", "pokemon_icon_089_61_shiny.png", "pokemon_icon_103_61_shiny.png",
+//					"pokemon_icon_105_61_shiny.png" };
 
 			// If more shiny hats come out, add to shinySpecialAvailable file
 			// Runs through the shinySpecialAvailable file and records number of lines
@@ -91,6 +114,7 @@ public class ShinyListReader {
 
 	/**
 	 * Gets the normal shiny Pokemon filenames
+	 * 
 	 * @return array of normal shiny Pokemon filenames
 	 */
 	public String[] getShiniesAvailableDefault() {
@@ -99,6 +123,7 @@ public class ShinyListReader {
 
 	/**
 	 * Gets the alola shiny Pokemon filenames
+	 * 
 	 * @return array of alola shiny Pokemon filenames
 	 */
 	public String[] getShiniesAvailableAlola() {
@@ -107,6 +132,7 @@ public class ShinyListReader {
 
 	/**
 	 * Gets the costume shiny Pokemon filenames
+	 * 
 	 * @return array of costume shiny Pokemon filenames
 	 */
 	public String[] getShiniesAvailableSpecial() {
@@ -115,6 +141,7 @@ public class ShinyListReader {
 
 	/**
 	 * Gets the normal and alola shiny Pokemon filenames
+	 * 
 	 * @return array of normal and alola shiny Pokemon filenames
 	 */
 	public String[] getShiniesAllButSpecial() {
@@ -132,6 +159,7 @@ public class ShinyListReader {
 
 	/**
 	 * Gets all shiny Pokemon filenames
+	 * 
 	 * @return array of all shiny Pokemon filenames
 	 */
 	public String[] getShiniesAll() {
@@ -152,6 +180,7 @@ public class ShinyListReader {
 
 	/**
 	 * Reads the color files for whichever list type
+	 * 
 	 * @param type type of list
 	 * @param size size of list
 	 * @return array of integers signifying color values

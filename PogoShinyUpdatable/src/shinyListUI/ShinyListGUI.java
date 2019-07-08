@@ -433,16 +433,16 @@ public class ShinyListGUI extends JFrame {
 		defaultOnly.setText("Normal Shinies");
 		JButton alolanOnly = new JButton();
 		alolanOnly.setBounds(150, 150, 300, 150);
-		alolanOnly.setText("Alolan Shinies");
+		alolanOnly.setText("Alt Form Shinies");
 		JButton specialOnly = new JButton();
 		specialOnly.setBounds(150, 150, 300, 150);
 		specialOnly.setText("Costume Shinies");
 		JButton defaultAndAlolan = new JButton();
 		defaultAndAlolan.setBounds(150, 150, 300, 150);
-		defaultAndAlolan.setText("Normal & Alolan Shinies");
+		defaultAndAlolan.setText("Normal & Alt Form Shinies");
 		JButton allShinies = new JButton();
 		allShinies.setBounds(150, 150, 300, 150);
-		allShinies.setText("Normal, Alolan, & Costume Shinies");
+		allShinies.setText("Normal, Alt Form, & Costume Shinies");
 
 		selection.add(defaultOnly);
 		selection.add(alolanOnly);
