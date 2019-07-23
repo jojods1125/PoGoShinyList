@@ -1,4 +1,4 @@
-Pokemon Go Updatable Shiny Checklist
+# Pokemon Go Updatable Shiny Checklist
 
 Created by Joseph Dasilva
 
