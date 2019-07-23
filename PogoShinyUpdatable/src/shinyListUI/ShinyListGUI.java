@@ -36,7 +36,7 @@ import shinyListMaker.ShinyListReader;
 /**
  * Displays all of the shinies in the shinyAvailable file and allows users to
  * change background colors on individual shinies. Users can also choose to show
- * alola and/or "hat" shinies.
+ * Forms and/or "hat" shinies.
  * 
  * @author Joseph Dasilva
  */
@@ -66,13 +66,13 @@ public class ShinyListGUI extends JFrame {
 		if (type.equals("Default")) {
 			shinyList = read.getShiniesAvailableDefault();
 		}
-		if (type.equals("Alolan")) {
-			shinyList = read.getShiniesAvailableAlola();
+		if (type.equals("Forms")) {
+			shinyList = read.getShiniesAvailableForms();
 		}
 		if (type.equals("Special")) {
 			shinyList = read.getShiniesAvailableSpecial();
 		}
-		if (type.equals("DefaultAlolan")) {
+		if (type.equals("DefaultForms")) {
 			shinyList = read.getShiniesAllButSpecial();
 		}
 		if (type.equals("All")) {
@@ -97,7 +97,7 @@ public class ShinyListGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String dexNum = enterShiny.getText();
 				try {
-					File file = new File("assets/shinyAvailable");
+					File file = new File("saveData/shinyAvailable");
 					FileWriter out = new FileWriter(file, true);
 					out.write("\n" + dexNum);
 					out.close();
@@ -113,7 +113,7 @@ public class ShinyListGUI extends JFrame {
 					while (!shinyListUpdate[idx].equals("pokemon_icon_" + dexNum + "_00_shiny.png")) {
 						idx++;
 					}
-					Scanner scanDefault = new Scanner(new FileInputStream("assets/colorDefault"));
+					Scanner scanDefault = new Scanner(new FileInputStream("saveData/colorDefault"));
 					for (int i = 0; i < idx; i++) {
 						colorsUpdate[i] = scanDefault.nextInt() % 5;
 					}
@@ -122,7 +122,7 @@ public class ShinyListGUI extends JFrame {
 						colorsUpdate[i] = scanDefault.nextInt() % 5;
 					}
 					scanDefault.close();
-					PrintStream psDefault = new PrintStream("assets/colorDefault");
+					PrintStream psDefault = new PrintStream("saveData/colorDefault");
 					for (int i = 0; i < colorsUpdate.length; i++) {
 						psDefault.println(colorsUpdate[i]);
 					}
@@ -134,20 +134,20 @@ public class ShinyListGUI extends JFrame {
 					while (!shinyListUpdate[idx].equals("pokemon_icon_" + dexNum + "_00_shiny.png")) {
 						idx++;
 					}
-					Scanner scanDefaultAlolan = new Scanner(new FileInputStream("assets/colorDefaultAlolan"));
+					Scanner scanDefaultForms = new Scanner(new FileInputStream("saveData/colorDefaultForms"));
 					for (int i = 0; i < idx; i++) {
-						colorsUpdate[i] = scanDefaultAlolan.nextInt() % 5;
+						colorsUpdate[i] = scanDefaultForms.nextInt() % 5;
 					}
 					colorsUpdate[idx] = 0;
 					for (int i = idx + 1; i < shinyListUpdate.length; i++) {
-						colorsUpdate[i] = scanDefaultAlolan.nextInt() % 5;
+						colorsUpdate[i] = scanDefaultForms.nextInt() % 5;
 					}
-					scanDefaultAlolan.close();
-					PrintStream psDefaultAlolan = new PrintStream("assets/colorDefaultAlolan");
+					scanDefaultForms.close();
+					PrintStream psDefaultForms = new PrintStream("saveData/colorDefaultForms");
 					for (int i = 0; i < colorsUpdate.length; i++) {
-						psDefaultAlolan.println(colorsUpdate[i]);
+						psDefaultForms.println(colorsUpdate[i]);
 					}
-					psDefaultAlolan.close();
+					psDefaultForms.close();
 
 					shinyListUpdate = readUpdate.getShiniesAll();
 					colorsUpdate = new int[shinyListUpdate.length];
@@ -155,7 +155,7 @@ public class ShinyListGUI extends JFrame {
 					while (!shinyListUpdate[idx].equals("pokemon_icon_" + dexNum + "_00_shiny.png")) {
 						idx++;
 					}
-					Scanner scanAll = new Scanner(new FileInputStream("assets/colorAll"));
+					Scanner scanAll = new Scanner(new FileInputStream("saveData/colorAll"));
 					for (int i = 0; i < idx; i++) {
 						colorsUpdate[i] = scanAll.nextInt() % 5;
 					}
@@ -164,7 +164,7 @@ public class ShinyListGUI extends JFrame {
 						colorsUpdate[i] = scanAll.nextInt() % 5;
 					}
 					scanAll.close();
-					PrintStream psAll = new PrintStream("assets/colorAll");
+					PrintStream psAll = new PrintStream("saveData/colorAll");
 					for (int i = 0; i < colorsUpdate.length; i++) {
 						psAll.println(colorsUpdate[i]);
 					}
@@ -199,7 +199,7 @@ public class ShinyListGUI extends JFrame {
 					while (!shinyListUpdate[idx].equals("pokemon_icon_" + dexNum + "_00_shiny.png")) {
 						idx++;
 					}
-					Scanner scanDefault = new Scanner(new FileInputStream("assets/colorDefault"));
+					Scanner scanDefault = new Scanner(new FileInputStream("saveData/colorDefault"));
 					for (int i = 0; i < idx; i++) {
 						colorsUpdate[i] = scanDefault.nextInt() % 5;
 					}
@@ -208,7 +208,7 @@ public class ShinyListGUI extends JFrame {
 						colorsUpdate[i] = scanDefault.nextInt() % 5;
 					}
 					scanDefault.close();
-					PrintStream psDefault = new PrintStream("assets/colorDefault");
+					PrintStream psDefault = new PrintStream("saveData/colorDefault");
 					for (int i = 0; i < colorsUpdate.length; i++) {
 						psDefault.println(colorsUpdate[i]);
 					}
@@ -220,20 +220,20 @@ public class ShinyListGUI extends JFrame {
 					while (!shinyListUpdate[idx].equals("pokemon_icon_" + dexNum + "_00_shiny.png")) {
 						idx++;
 					}
-					Scanner scanDefaultAlolan = new Scanner(new FileInputStream("assets/colorDefaultAlolan"));
+					Scanner scanDefaultForms = new Scanner(new FileInputStream("saveData/colorDefaultForms"));
 					for (int i = 0; i < idx; i++) {
-						colorsUpdate[i] = scanDefaultAlolan.nextInt() % 5;
+						colorsUpdate[i] = scanDefaultForms.nextInt() % 5;
 					}
-					scanDefaultAlolan.nextInt();
+					scanDefaultForms.nextInt();
 					for (int i = idx; i < shinyListUpdate.length - 1; i++) {
-						colorsUpdate[i] = scanDefaultAlolan.nextInt() % 5;
+						colorsUpdate[i] = scanDefaultForms.nextInt() % 5;
 					}
-					scanDefaultAlolan.close();
-					PrintStream psDefaultAlolan = new PrintStream("assets/colorDefaultAlolan");
+					scanDefaultForms.close();
+					PrintStream psDefaultForms = new PrintStream("saveData/colorDefaultForms");
 					for (int i = 0; i < colorsUpdate.length; i++) {
-						psDefaultAlolan.println(colorsUpdate[i]);
+						psDefaultForms.println(colorsUpdate[i]);
 					}
-					psDefaultAlolan.close();
+					psDefaultForms.close();
 
 					shinyListUpdate = readUpdate.getShiniesAll();
 					colorsUpdate = new int[shinyListUpdate.length - 1];
@@ -241,7 +241,7 @@ public class ShinyListGUI extends JFrame {
 					while (!shinyListUpdate[idx].equals("pokemon_icon_" + dexNum + "_00_shiny.png")) {
 						idx++;
 					}
-					Scanner scanAll = new Scanner(new FileInputStream("assets/colorAll"));
+					Scanner scanAll = new Scanner(new FileInputStream("saveData/colorAll"));
 					for (int i = 0; i < idx; i++) {
 						colorsUpdate[i] = scanAll.nextInt() % 5;
 					}
@@ -250,13 +250,13 @@ public class ShinyListGUI extends JFrame {
 						colorsUpdate[i] = scanAll.nextInt() % 5;
 					}
 					scanAll.close();
-					PrintStream psAll = new PrintStream("assets/colorAll");
+					PrintStream psAll = new PrintStream("saveData/colorAll");
 					for (int i = 0; i < colorsUpdate.length; i++) {
 						psAll.println(colorsUpdate[i]);
 					}
 					psAll.close();
 
-					Scanner scan = new Scanner(new FileInputStream("assets/shinyAvailable"));
+					Scanner scan = new Scanner(new FileInputStream("saveData/shinyAvailable"));
 					String[] nums = new String[read.getShiniesAvailableDefault().length];
 					int j = 0;
 					while (scan.hasNext()) {
@@ -266,7 +266,7 @@ public class ShinyListGUI extends JFrame {
 							j++;
 						}
 					}
-					PrintStream out = new PrintStream("assets/shinyAvailable");
+					PrintStream out = new PrintStream("saveData/shinyAvailable");
 					for (int i = 0; i < nums.length - 1; i++) {
 						out.println(nums[i]);
 					}
@@ -336,7 +336,7 @@ public class ShinyListGUI extends JFrame {
 		for (int i = 0; i < shinyList.length; i++) {
 			image = new ImageIcon("assets/ShinyDefault/" + shinyList[i]);
 			if (image.getIconHeight() < 10) {
-				image = new ImageIcon("assets/ShinyAlola/" + shinyList[i]);
+				image = new ImageIcon("assets/ShinyForms/" + shinyList[i]);
 			}
 			if (image.getIconHeight() < 10) {
 				image = new ImageIcon("assets/ShinySpecial/" + shinyList[i]);
@@ -364,7 +364,7 @@ public class ShinyListGUI extends JFrame {
 		saveColors.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					PrintStream out = new PrintStream("assets/color" + type);
+					PrintStream out = new PrintStream("saveData/color" + type);
 					for (int i = 0; i < buttons.length; i++) {
 						out.println(buttons[i].getCurrentColor());
 					}
@@ -405,7 +405,7 @@ public class ShinyListGUI extends JFrame {
 		clearColors.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					PrintStream out = new PrintStream("assets/color" + type);
+					PrintStream out = new PrintStream("saveData/color" + type);
 					for (int i = 0; i < buttons.length; i++) {
 						buttons[i].setCurrentColor(0);
 						buttons[i].setVisible(false);
@@ -431,23 +431,23 @@ public class ShinyListGUI extends JFrame {
 		JButton defaultOnly = new JButton();
 		defaultOnly.setBounds(150, 150, 300, 150);
 		defaultOnly.setText("Normal Shinies");
-		JButton alolanOnly = new JButton();
-		alolanOnly.setBounds(150, 150, 300, 150);
-		alolanOnly.setText("Alt Form Shinies");
+		JButton FormsOnly = new JButton();
+		FormsOnly.setBounds(150, 150, 300, 150);
+		FormsOnly.setText("Alt Form Shinies");
 		JButton specialOnly = new JButton();
 		specialOnly.setBounds(150, 150, 300, 150);
 		specialOnly.setText("Costume Shinies");
-		JButton defaultAndAlolan = new JButton();
-		defaultAndAlolan.setBounds(150, 150, 300, 150);
-		defaultAndAlolan.setText("Normal & Alt Form Shinies");
+		JButton defaultAndForms = new JButton();
+		defaultAndForms.setBounds(150, 150, 300, 150);
+		defaultAndForms.setText("Normal & Alt Form Shinies");
 		JButton allShinies = new JButton();
 		allShinies.setBounds(150, 150, 300, 150);
 		allShinies.setText("Normal, Alt Form, & Costume Shinies");
 
 		selection.add(defaultOnly);
-		selection.add(alolanOnly);
+		selection.add(FormsOnly);
 		selection.add(specialOnly);
-		selection.add(defaultAndAlolan);
+		selection.add(defaultAndForms);
 		selection.add(allShinies);
 		cp.add(selection);
 		frame.setTitle("Pokemon Go Shiny Checklist - Select List");
@@ -462,10 +462,10 @@ public class ShinyListGUI extends JFrame {
 			}
 		});
 
-		alolanOnly.addActionListener(new ActionListener() {
+		FormsOnly.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				new ShinyListGUI("Alolan");
+				new ShinyListGUI("Forms");
 			}
 		});
 
@@ -476,10 +476,10 @@ public class ShinyListGUI extends JFrame {
 			}
 		});
 
-		defaultAndAlolan.addActionListener(new ActionListener() {
+		defaultAndForms.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				new ShinyListGUI("DefaultAlolan");
+				new ShinyListGUI("DefaultForms");
 			}
 		});
 

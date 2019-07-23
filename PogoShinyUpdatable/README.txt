@@ -1,32 +1,33 @@
 Pokemon Go Updatable Shiny Checklist
 Created by Joseph Dasilva
-Version 1.1.0, released on July 8th, 2019
+Version 2.0.0, released on July 23rd, 2019
 
 ========================== SETUP ==========================
 To have the checklist run properly, ensure that you have
 the following files structured as follows:
     -PoGoShinyList.jar
     -assets folder
-        -ShinyAlola folder
-            -[Alt Forms shiny .png files]
         -ShinyDefault folder
             -[Normal shiny .png files]
+        -ShinyForms folder
+            -[Alt Forms shiny .png files]
         -ShinySpecial folder
             -[Costume shiny .png files]
-        -colorAll
-        -colorAlolan
-        -colorDefault
-        -colorDefaultAlolan
-        -colorSpecial
-        -shinyAvailable
         -shinyFormsAvailable
         -shinySpecialAvailable
+    -saveData folder
+        -colorAll
+        -colorDefault
+        -colorDefaultForms
+        -colorForms
+        -colorSpecial
+        -shinyAvailable
 
 The original assets folders contain the following:
-    -ShinyAlola
-        -All alternative form shiny forms
     -ShinyDefault
         -All Gens 1-4 shiny forms
+    -ShinyForms
+        -All Gens 1-4 alt form shiny forms
     -ShinySpecial
         -Sunglass Squirtle family
         -Santa Pikachu/Raichu/Pichu
@@ -38,42 +39,53 @@ The original assets folders contain the following:
         -Fragment Pikachu/Raichu
         -Flower Pikachu/Raichu
         -Detective Pikachu/Raichu
+        -Sun Hat Pikachu
         -Flower Eevee family (Gens 1-4)
+
+The original shiny checklist data contains all shiny
+Pokemon released up through July 23rd, 2019. For reference,
+the most recently added are the Mudkip family and Sun Hat
+Pikachu. Any shiny Pokemon released since then should be
+added through the Add Shiny feature found in the program.
 
 IF MORE ASSETS MUST BE ADDED:
     -Put normal shiny forms in ShinyDefault
         *Ensure all ShinyDefault files end in 00_shiny.png*
     -Put costume shiny forms in ShinySpecial
         *Add file names to shinySpecialAvailable*
-    -Put alt form shiny forms in ShinyAlola
+    -Put alt form shiny forms in ShinyForms
         *Add file names to shinyFormsAvailable*
         EXAMPLES => Spinda, Giratina-O, Deoxys ATK/DEF/SPD
 ===========================================================
 
 ======================== FUNCTIONS ========================
- - Five different list types
+- Five different list types.
 
- - Pokemon backgrounds change color when clicked
+- Pokemon backgrounds change color when clicked.
 
- - Colors can be saved for future access with the Save 
-   Colors button
+- Colors can be saved for future access with the Save 
+  Colors button.
 
- - Screenshot button saves a .png file of the UI
-   -> File can be found in the main project folder as
-      MyShinyChecklist.png
+- Screenshot button saves a .png file of the UI.
+  -> File can be found in the main project folder as
+     MyShinyChecklist.png
 
- - New shiny Pokemon (whose assets are already in the asset
-   folder) can be added by entering the Pokedex entry in
-   the text box in the program and pressing Add Shiny.
-   -> Pokedex entries must include leading zeroes
+- New shiny Pokemon (whose assets are already in the asset
+  folder) can be added by entering the Pokedex entry in
+  the text box in the program and pressing Add Shiny.
+  -> Pokedex entries must include leading zeroes
 
- - Shiny Pokemon can be removed by entering the Pokedex
-   entry in the text box in the program and pressing Remove
-   Shiny.
-   -> Pokedex entries must include leading zeroes
+- Shiny Pokemon can be removed by entering the Pokedex
+  entry in the text box in the program and pressing Remove
+  Shiny.
+  -> Pokedex entries must include leading zeroes
 
 - Shiny Pokemon alternative forms (such as Giratina-O,
   Deoxys ATK/DEF/SPD, Sand/Trash Cloak Burmy) can be added
   to any Alt Forms lists by adding the corresponding asset
-  file names to shinySpecialAvailable
+  file names to shinyFormsAvailable.
+  
+- Shiny Pokemon with costumes (such as hat Pikachus) can be
+  added to any Costume lists by adding the corresponding
+  asset file names to shinySpecialAvailable.
 ===========================================================
