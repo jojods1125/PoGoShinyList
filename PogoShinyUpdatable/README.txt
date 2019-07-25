@@ -1,6 +1,6 @@
 Pokemon Go Updatable Shiny Checklist
 Created by Joseph Dasilva
-Version 2.0.0, released on July 23rd, 2019
+Version 2.1.0, released on July 25th, 2019
 
 ========================== SETUP ==========================
 To have the checklist run properly, ensure that you have
@@ -43,9 +43,11 @@ The original assets folders contain the following:
         -Flower Eevee family (Gens 1-4)
 
 The original shiny checklist data contains all shiny
-Pokemon released up through July 23rd, 2019. For reference,
-the most recently added are the Mudkip family and Sun Hat
-Pikachu. Any shiny Pokemon released since then should be
+Pokemon released up through July 25th, 2019. For reference,
+the most recently added are the Ekans, Koffing, Zubat, and
+Sneasel families.
+
+Any shiny Pokemon released since then should be
 added through the Add Shiny feature found in the program.
 
 IF MORE ASSETS MUST BE ADDED:
