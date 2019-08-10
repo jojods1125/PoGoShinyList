@@ -16,8 +16,6 @@ the following files structured as follows:
             -[Alt Forms shiny .png files]
         -ShinySpecial folder
             -[Costume shiny .png files]
-        -shinyFormsAvailable
-        -shinySpecialAvailable
     -saveData folder
         -colorAll
         -colorDefault
@@ -25,6 +23,8 @@ the following files structured as follows:
         -colorForms
         -colorSpecial
         -shinyAvailable
+        -shinyFormsAvailable
+        -shinySpecialAvailable
 
 The original asset folders contain the following:
 
@@ -39,7 +39,7 @@ The original asset folders contain the following:
         -Witch Pikachu/Raichu/Pichu
         -Summer Pikachu/Raichu/Pichu
         -Winter Pikachu/Raichu/Pichu
-        -Ash Pikachu/Raichu
+        -Ash Pikachu/Raichu/Pichu
         -Fragment Pikachu/Raichu
         -Flower Pikachu/Raichu
         -Detective Pikachu/Raichu
@@ -47,49 +47,49 @@ The original asset folders contain the following:
         -Flower Eevee family (Gens 1-4)
 
 The original shiny checklist data contains all shiny
-Pokemon released up through July 23rd, 2019. For reference,
-the most recently added are the Mudkip family and Sun Hat
-Pikachu. Any shiny Pokemon released since then should be
-added through the Add Shiny feature found in the program,
-or in the case of costume and/or alt forms, through 
-shinyFormsAvailable/shinySpecialAvailable.
+Pokemon released up through August 10th, 2019. For 
+reference, the most recently added are the Ralts and
+Poliwag families, and the Pikachu costume shinies added
+during Yokohama Go Fest.
+
+Any shiny Pokemon released since then should be
+added through the various addition features found in the
+program.
 
 IF MORE ASSETS MUST BE ADDED:
-
     -Put normal shiny forms in ShinyDefault
         *Ensure all ShinyDefault files end in 00_shiny.png*
     -Put costume shiny forms in ShinySpecial
-        *Add file names to shinySpecialAvailable*
+        *Ensure all ShinySpecial files end in 
+         XXX_XX_XX_shiny.png*
     -Put alt form shiny forms in ShinyForms
-        *Add file names to shinyFormsAvailable*
+        *Ensure all ShinyDefault files end in 
+         XXX_XX_shiny.png*
         EXAMPLES => Spinda, Giratina-O, Deoxys ATK/DEF/SPD
 
 ## FUNCTIONS
 - Five different list types.
+  -> Default shinies
+  -> Alt form shinies
+  -> Costume shinies
+  -> Default and alt form shinies
+  -> All shinies
 
-- Pokemon backgrounds change color when clicked.
+- Pokemon backgrounds change between 5 colors when clicked.
 
 - Colors can be saved for future access with the Save 
   Colors button.
-
-- Screenshot button saves a .png file of the UI.
-  -File can be found in the main project folder as MyShinyChecklist.png
-
-- New shiny Pokemon (whose assets are already in the asset
-  folder) can be added by entering the Pokedex entry in
-  the text box in the program and pressing Add Shiny.
-  - Pokedex entries must include leading zeroes
-
-- Shiny Pokemon can be removed by entering the Pokedex
-  entry in the text box in the program and pressing Remove
-  Shiny.
-  - Pokedex entries must include leading zeroes
-
-- Shiny Pokemon alternative forms (such as Giratina-O,
-  Deoxys ATK/DEF/SPD, Sand/Trash Cloak Burmy) can be added
-  to any Alt Forms lists by adding the corresponding asset
-  file names to shinyFormsAvailable.
   
-- Shiny Pokemon with costumes (such as hat Pikachus) can be
-  added to any Costume lists by adding the corresponding
-  asset file names to shinySpecialAvailable.
+- Colors can be cleared and will immediately be saved with
+  the Clear Colors button.
+
+- The screenshot button saves a .png file of the UI.
+  -> File can be found in the main project folder as
+     MyShinyChecklist.png
+
+- Shiny Pokemon default forms, alt forms, and costume forms
+  can be added and will appear in the appropriate lists.
+  
+- Shiny Pokemon default forms, alt forms, and costume forms
+  can be removed and will disappear from the appropriate
+  lists.
