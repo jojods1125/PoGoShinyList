@@ -4,7 +4,7 @@ Created by Joseph Dasilva
 
 Version 3.0.0, released on August 10th, 2019
 
-## FUNCTIONS
+## Functions
 - Five different list types.
    - Default shinies
    - Alt form shinies
