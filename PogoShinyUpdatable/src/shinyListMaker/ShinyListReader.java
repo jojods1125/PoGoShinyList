@@ -54,7 +54,7 @@ public class ShinyListReader {
 
 			// If more shiny forms come out, add to shinyFormsAvailable file
 			// Runs through the shinyFormsAvailable file and records number of lines
-			Scanner sizerFo = new Scanner(new FileInputStream("assets/shinyFormsAvailable"));
+			Scanner sizerFo = new Scanner(new FileInputStream("saveData/shinyFormsAvailable"));
 			int sizeFo = 0;
 			while (sizerFo.hasNext()) {
 				sizeFo++;
@@ -63,7 +63,7 @@ public class ShinyListReader {
 			sizerFo.close();
 
 			// Runs through the shinyFormsAvailable file and gets png filenames
-			Scanner scanFo = new Scanner(new FileInputStream("assets/shinyFormsAvailable"));
+			Scanner scanFo = new Scanner(new FileInputStream("saveData/shinyFormsAvailable"));
 			int idxFo = 0;
 			shiniesForms = new String[sizeFo];
 			while (scanFo.hasNext()) {
@@ -87,7 +87,7 @@ public class ShinyListReader {
 
 			// If more shiny hats come out, add to shinySpecialAvailable file
 			// Runs through the shinySpecialAvailable file and records number of lines
-			Scanner sizerSp = new Scanner(new FileInputStream("assets/shinySpecialAvailable"));
+			Scanner sizerSp = new Scanner(new FileInputStream("saveData/shinySpecialAvailable"));
 			int sizeSp = 0;
 			while (sizerSp.hasNext()) {
 				sizeSp++;
@@ -96,7 +96,7 @@ public class ShinyListReader {
 			sizerSp.close();
 
 			// Runs through the shinySpecialAvailable file and gets png filenames
-			Scanner scanSp = new Scanner(new FileInputStream("assets/shinySpecialAvailable"));
+			Scanner scanSp = new Scanner(new FileInputStream("saveData/shinySpecialAvailable"));
 			int idxSp = 0;
 			shiniesSpecial = new String[sizeSp];
 			while (scanSp.hasNext()) {

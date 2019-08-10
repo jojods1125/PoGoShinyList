@@ -5,6 +5,7 @@ package shinyListUI;
 
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -23,9 +24,12 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 import javax.imageio.ImageIO;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -50,6 +54,7 @@ public class ShinyListGUI extends JFrame {
 
 	/**
 	 * Constructs the ShinyListGUI of type
+	 * 
 	 * @param type type of ShinyListGUI
 	 */
 	public ShinyListGUI(String type) {
@@ -85,13 +90,13 @@ public class ShinyListGUI extends JFrame {
 
 		JTextField enterShiny = new JTextField();
 		enterShiny.setText("Enter New Dex #");
-		enterShiny.setBounds(150, 150, 300, 150);
-		c.gridx = 9;
+		enterShiny.setMargin(new Insets(3,4,3,5));
+		c.gridx = 6;
 		c.gridy = 0;
 		panel.add(enterShiny, c);
 
 		JButton addShiny = new JButton();
-		addShiny.setBounds(150, 150, 300, 150);
+		addShiny.setMargin(new Insets(2,20,2,20));
 		addShiny.setText("Add Shiny");
 		addShiny.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -99,7 +104,7 @@ public class ShinyListGUI extends JFrame {
 				try {
 					File file = new File("saveData/shinyAvailable");
 					FileWriter out = new FileWriter(file, true);
-					out.write("\n" + dexNum);
+					out.write(dexNum + "\n");
 					out.close();
 
 					ShinyListReader readUpdate = new ShinyListReader();
@@ -177,12 +182,12 @@ public class ShinyListGUI extends JFrame {
 				}
 			}
 		});
-		c.gridx = 10;
+		c.gridx = 7;
 		c.gridy = 0;
 		panel.add(addShiny, c);
 
 		JButton removeShiny = new JButton();
-		removeShiny.setBounds(150, 150, 300, 150);
+		removeShiny.setMargin(new Insets(2,12,2,12));
 		removeShiny.setText("Delete Shiny");
 		removeShiny.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -276,16 +281,43 @@ public class ShinyListGUI extends JFrame {
 					new ShinyListGUI(type);
 					setVisible(false);
 				} catch (IOException e1) {
-					System.out.println("Could not add shiny");
+					System.out.println("Could not remove shiny");
 				}
+			}
+		});
+		c.gridx = 8;
+		c.gridy = 0;
+		panel.add(removeShiny, c);
+
+		ShinyListGUI gui = this;
+		
+		JButton editAltForm = new JButton();
+		editAltForm.setMargin(new Insets(2,8,2,8));
+		editAltForm.setText("Edit Alt Forms");
+		editAltForm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				createAltFormFrame(type, gui, read);
+			}
+		});
+		c.gridx = 10;
+		c.gridy = 0;
+		panel.add(editAltForm, c);
+		
+		JButton editCostume = new JButton();
+		editCostume.setMargin(new Insets(2,8,2,8));
+		editCostume.setText("Edit Costumes");
+		editCostume.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				createCostumeFrame(type, gui, read);
 			}
 		});
 		c.gridx = 11;
 		c.gridy = 0;
-		panel.add(removeShiny, c);
+		panel.add(editCostume, c);
 
 		colors = read.readColors(type, shinyList.length);
 		buttons = new ShinyButton[shinyList.length];
+
 		createShinyButtons(panel, c, shinyList);
 
 		JScrollPane pane = new JScrollPane(panel, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -299,6 +331,7 @@ public class ShinyListGUI extends JFrame {
 
 	/**
 	 * Starts the program by showing the selection frame
+	 * 
 	 * @param args command line arguments
 	 */
 	public static void main(String[] args) {
@@ -307,6 +340,7 @@ public class ShinyListGUI extends JFrame {
 
 	/**
 	 * Captures the GUI in a png file called MyShinyChecklist
+	 * 
 	 * @param component GUI being captured
 	 */
 	private static void captureComponent(Component component) {
@@ -328,8 +362,9 @@ public class ShinyListGUI extends JFrame {
 
 	/**
 	 * Creates all of the shiny buttons that appear in the list
-	 * @param panel panel of list
-	 * @param c grid bag constraints of list
+	 * 
+	 * @param panel     panel of list
+	 * @param c         grid bag constraints of list
 	 * @param shinyList array of filenames
 	 */
 	private void createShinyButtons(JPanel panel, GridBagConstraints c, String[] shinyList) {
@@ -354,8 +389,9 @@ public class ShinyListGUI extends JFrame {
 
 	/**
 	 * Creates the Save Colors button
+	 * 
 	 * @param panel panel of list
-	 * @param type type of list
+	 * @param type  type of list
 	 */
 	private void saveColorsButton(JPanel panel, String type) {
 		JButton saveColors = new JButton();
@@ -379,6 +415,7 @@ public class ShinyListGUI extends JFrame {
 
 	/**
 	 * Creates the Screenshot button
+	 * 
 	 * @param panel panel of list
 	 */
 	private void screenshotButton(JPanel panel) {
@@ -395,8 +432,9 @@ public class ShinyListGUI extends JFrame {
 
 	/**
 	 * Creates the Clear Colors button
+	 * 
 	 * @param panel panel of list
-	 * @param type type of list
+	 * @param type  type of list
 	 */
 	private void clearColorsButton(JPanel panel, String type) {
 		JButton clearColors = new JButton();
@@ -487,6 +525,462 @@ public class ShinyListGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
 				new ShinyListGUI("All");
+			}
+		});
+	}
+
+	/**
+	 * Creates the edit alt form shiny window
+	 * @param type type of list
+	 * @param gui old instance of list
+	 * @param read reader instance
+	 */
+	private static void createAltFormFrame(String type, ShinyListGUI gui, ShinyListReader read) {
+		JFrame frame = new JFrame();
+		JPanel pane = new JPanel();
+		BoxLayout boxlayout = new BoxLayout(pane, BoxLayout.Y_AXIS);
+		pane.setLayout(boxlayout);
+
+		JLabel title = new JLabel("Edit Alt Form Shiny List");
+		pane.add(title);
+
+		pane.add(Box.createRigidArea(new Dimension(5, 20)));
+
+		JLabel helper = new JLabel("Enter the first number in the asset filename here");
+		pane.add(helper);
+
+		JTextField enterDex = new JTextField();
+		enterDex.setText("Enter New Dex #");
+		enterDex.setMaximumSize(new Dimension(350, enterDex.getPreferredSize().height));
+		pane.add(enterDex);
+
+		pane.add(Box.createRigidArea(new Dimension(5, 10)));
+
+		JLabel helper2 = new JLabel("Enter the second number in the asset filename here");
+		pane.add(helper2);
+
+		JTextField enterForm = new JTextField();
+		enterForm.setText("Enter New Form #");
+		enterForm.setMaximumSize(new Dimension(350, enterDex.getPreferredSize().height));
+		pane.add(enterForm);
+		
+		pane.add(Box.createRigidArea(new Dimension(5, 10)));
+
+		JButton addShiny = new JButton();
+		addShiny.setBounds(150, 150, 300, 150);
+		addShiny.setText("Add Alt Form Shiny");
+		pane.add(addShiny);
+		
+		pane.add(Box.createRigidArea(new Dimension(5, 5)));
+
+		JButton removeShiny = new JButton();
+		removeShiny.setBounds(150, 150, 300, 150);
+		removeShiny.setText("Remove Alt Form Shiny");
+		pane.add(removeShiny);
+
+		frame.add(pane);
+		frame.setTitle("Edit Alt Form List");
+		frame.setSize(350, 250);
+		frame.setLocation(250, 250);
+		frame.setVisible(true);
+
+		addShiny.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String dexNum = enterDex.getText();
+				String formNum = enterForm.getText();
+				try {
+					File file = new File("saveData/shinyFormsAvailable");
+					FileWriter out = new FileWriter(file, true);
+					out.write("pokemon_icon_" + dexNum + "_" + formNum + "_shiny.png" + "\n");
+					out.close();
+
+					ShinyListReader readUpdate = new ShinyListReader();
+					String[] shinyListUpdate;
+					int[] colorsUpdate;
+					int idx;
+
+					shinyListUpdate = readUpdate.getShiniesAvailableForms();
+					colorsUpdate = new int[shinyListUpdate.length];
+					idx = 0;
+					while (!shinyListUpdate[idx].equals("pokemon_icon_" + dexNum + "_" + formNum + "_shiny.png")) {
+						idx++;
+					}
+					Scanner scanDefault = new Scanner(new FileInputStream("saveData/colorForms"));
+					for (int i = 0; i < idx; i++) {
+						colorsUpdate[i] = scanDefault.nextInt() % 5;
+					}
+					colorsUpdate[idx] = 0;
+					for (int i = idx + 1; i < shinyListUpdate.length; i++) {
+						colorsUpdate[i] = scanDefault.nextInt() % 5;
+					}
+					scanDefault.close();
+					PrintStream psDefault = new PrintStream("saveData/colorForms");
+					for (int i = 0; i < colorsUpdate.length; i++) {
+						psDefault.println(colorsUpdate[i]);
+					}
+					psDefault.close();
+
+					shinyListUpdate = readUpdate.getShiniesAllButSpecial();
+					colorsUpdate = new int[shinyListUpdate.length];
+					idx = 0;
+					while (!shinyListUpdate[idx].equals("pokemon_icon_" + dexNum + "_" + formNum + "_shiny.png")) {
+						idx++;
+					}
+					Scanner scanDefaultForms = new Scanner(new FileInputStream("saveData/colorDefaultForms"));
+					for (int i = 0; i < idx; i++) {
+						colorsUpdate[i] = scanDefaultForms.nextInt() % 5;
+					}
+					colorsUpdate[idx] = 0;
+					for (int i = idx + 1; i < shinyListUpdate.length; i++) {
+						colorsUpdate[i] = scanDefaultForms.nextInt() % 5;
+					}
+					scanDefaultForms.close();
+					PrintStream psDefaultForms = new PrintStream("saveData/colorDefaultForms");
+					for (int i = 0; i < colorsUpdate.length; i++) {
+						psDefaultForms.println(colorsUpdate[i]);
+					}
+					psDefaultForms.close();
+
+					shinyListUpdate = readUpdate.getShiniesAll();
+					colorsUpdate = new int[shinyListUpdate.length];
+					idx = 0;
+					while (!shinyListUpdate[idx].equals("pokemon_icon_" + dexNum + "_" + formNum + "_shiny.png")) {
+						idx++;
+					}
+					Scanner scanAll = new Scanner(new FileInputStream("saveData/colorAll"));
+					for (int i = 0; i < idx; i++) {
+						colorsUpdate[i] = scanAll.nextInt() % 5;
+					}
+					colorsUpdate[idx] = 0;
+					for (int i = idx + 1; i < shinyListUpdate.length; i++) {
+						colorsUpdate[i] = scanAll.nextInt() % 5;
+					}
+					scanAll.close();
+					PrintStream psAll = new PrintStream("saveData/colorAll");
+					for (int i = 0; i < colorsUpdate.length; i++) {
+						psAll.println(colorsUpdate[i]);
+					}
+					psAll.close();
+					
+					frame.setVisible(false);
+					gui.setVisible(false);
+					new ShinyListGUI(type);
+				} catch (IOException e1) {
+					System.out.println("Could not add shiny: " + e1.getMessage());
+				}
+				frame.setVisible(false);
+			}
+		});
+
+		removeShiny.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String dexNum = enterDex.getText();
+				String formNum = enterForm.getText();
+				try {
+					ShinyListReader readUpdate = new ShinyListReader();
+					String[] shinyListUpdate;
+					int[] colorsUpdate;
+					int idx;
+
+					shinyListUpdate = readUpdate.getShiniesAvailableForms();
+					colorsUpdate = new int[shinyListUpdate.length - 1];
+					idx = 0;
+					while (!shinyListUpdate[idx].equals("pokemon_icon_" + dexNum + "_" + formNum + "_shiny.png")) {
+						idx++;
+					}
+					Scanner scanDefault = new Scanner(new FileInputStream("saveData/colorForms"));
+					for (int i = 0; i < idx; i++) {
+						colorsUpdate[i] = scanDefault.nextInt() % 5;
+					}
+					scanDefault.nextInt();
+					for (int i = idx; i < shinyListUpdate.length - 1; i++) {
+						colorsUpdate[i] = scanDefault.nextInt() % 5;
+					}
+					scanDefault.close();
+					PrintStream psDefault = new PrintStream("saveData/colorForms");
+					for (int i = 0; i < colorsUpdate.length; i++) {
+						psDefault.println(colorsUpdate[i]);
+					}
+					psDefault.close();
+
+					shinyListUpdate = readUpdate.getShiniesAllButSpecial();
+					colorsUpdate = new int[shinyListUpdate.length - 1];
+					idx = 0;
+					while (!shinyListUpdate[idx].equals("pokemon_icon_" + dexNum + "_" + formNum + "_shiny.png")) {
+						idx++;
+					}
+					Scanner scanDefaultForms = new Scanner(new FileInputStream("saveData/colorDefaultForms"));
+					for (int i = 0; i < idx; i++) {
+						colorsUpdate[i] = scanDefaultForms.nextInt() % 5;
+					}
+					scanDefaultForms.nextInt();
+					for (int i = idx; i < shinyListUpdate.length - 1; i++) {
+						colorsUpdate[i] = scanDefaultForms.nextInt() % 5;
+					}
+					scanDefaultForms.close();
+					PrintStream psDefaultForms = new PrintStream("saveData/colorDefaultForms");
+					for (int i = 0; i < colorsUpdate.length; i++) {
+						psDefaultForms.println(colorsUpdate[i]);
+					}
+					psDefaultForms.close();
+
+					shinyListUpdate = readUpdate.getShiniesAll();
+					colorsUpdate = new int[shinyListUpdate.length - 1];
+					idx = 0;
+					while (!shinyListUpdate[idx].equals("pokemon_icon_" + dexNum + "_" + formNum + "_shiny.png")) {
+						idx++;
+					}
+					Scanner scanAll = new Scanner(new FileInputStream("saveData/colorAll"));
+					for (int i = 0; i < idx; i++) {
+						colorsUpdate[i] = scanAll.nextInt() % 5;
+					}
+					scanAll.nextInt();
+					for (int i = idx; i < shinyListUpdate.length - 1; i++) {
+						colorsUpdate[i] = scanAll.nextInt() % 5;
+					}
+					scanAll.close();
+					PrintStream psAll = new PrintStream("saveData/colorAll");
+					for (int i = 0; i < colorsUpdate.length; i++) {
+						psAll.println(colorsUpdate[i]);
+					}
+					psAll.close();
+
+					Scanner scan = new Scanner(new FileInputStream("saveData/shinyFormsAvailable"));
+					String[] nums = new String[read.getShiniesAvailableForms().length];
+					int j = 0;
+					while (scan.hasNext()) {
+						String number = scan.next();
+						if (!number.equals("pokemon_icon_" + dexNum + "_" + formNum + "_shiny.png")) {
+							nums[j] = number;
+							j++;
+						}
+					}
+					PrintStream out = new PrintStream("saveData/shinyFormsAvailable");
+					for (int i = 0; i < nums.length - 1; i++) {
+						out.println(nums[i]);
+					}
+					scan.close();
+					out.close();
+
+					frame.setVisible(false);
+					gui.setVisible(false);
+					new ShinyListGUI(type);
+				} catch (IOException e1) {
+					System.out.println("Could not remove shiny");
+				}
+			}
+		});
+	}
+	
+	/**
+	 * Creates the edit costume shiny window
+	 * @param type type of list
+	 * @param gui old instance of list
+	 * @param read reader instance
+	 */
+	private static void createCostumeFrame(String type, ShinyListGUI gui, ShinyListReader read) {
+		JFrame frame = new JFrame();
+		JPanel pane = new JPanel();
+		BoxLayout boxlayout = new BoxLayout(pane, BoxLayout.Y_AXIS);
+		pane.setLayout(boxlayout);
+
+		JLabel title = new JLabel("Edit Costume Shiny List");
+		pane.add(title);
+
+		pane.add(Box.createRigidArea(new Dimension(5, 20)));
+
+		JLabel helper = new JLabel("Enter the first number in the asset filename here");
+		pane.add(helper);
+
+		JTextField enterDex = new JTextField();
+		enterDex.setText("Enter New Dex #");
+		enterDex.setMaximumSize(new Dimension(350, enterDex.getPreferredSize().height));
+		pane.add(enterDex);
+
+		pane.add(Box.createRigidArea(new Dimension(5, 10)));
+
+		JLabel helper2 = new JLabel("Enter the second number in the asset filename here");
+		pane.add(helper2);
+
+		JTextField enterForm = new JTextField();
+		enterForm.setText("Enter New Form #");
+		enterForm.setMaximumSize(new Dimension(350, enterDex.getPreferredSize().height));
+		pane.add(enterForm);
+		
+		pane.add(Box.createRigidArea(new Dimension(5, 10)));
+		
+		JLabel helper3 = new JLabel("Enter the third number in the asset filename here");
+		pane.add(helper3);
+
+		JTextField enterHat = new JTextField();
+		enterHat.setText("Enter New Form #");
+		enterHat.setMaximumSize(new Dimension(350, enterDex.getPreferredSize().height));
+		pane.add(enterHat);
+		
+		pane.add(Box.createRigidArea(new Dimension(5, 10)));
+
+		JButton addShiny = new JButton();
+		addShiny.setBounds(150, 150, 300, 150);
+		addShiny.setText("Add Costume Shiny");
+		pane.add(addShiny);
+		
+		pane.add(Box.createRigidArea(new Dimension(5, 5)));
+
+		JButton removeShiny = new JButton();
+		removeShiny.setBounds(150, 150, 300, 150);
+		removeShiny.setText("Remove Costume Shiny");
+		pane.add(removeShiny);
+
+		frame.add(pane);
+		frame.setTitle("Edit Costume List");
+		frame.setSize(350, 290);
+		frame.setLocation(250, 250);
+		frame.setVisible(true);
+
+		addShiny.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String dexNum = enterDex.getText();
+				String formNum = enterForm.getText();
+				String hatNum = enterHat.getText();
+				try {
+					File file = new File("saveData/shinySpecialAvailable");
+					FileWriter out = new FileWriter(file, true);
+					out.write("pokemon_icon_" + dexNum + "_" + formNum + "_" + hatNum +"_shiny.png" + "\n");
+					out.close();
+
+					ShinyListReader readUpdate = new ShinyListReader();
+					String[] shinyListUpdate;
+					int[] colorsUpdate;
+					int idx;
+
+					shinyListUpdate = readUpdate.getShiniesAvailableSpecial();
+					colorsUpdate = new int[shinyListUpdate.length];
+					idx = 0;
+					while (!shinyListUpdate[idx].equals("pokemon_icon_" + dexNum + "_" + formNum + "_" + hatNum +"_shiny.png")) {
+						idx++;
+					}
+					Scanner scanDefault = new Scanner(new FileInputStream("saveData/colorSpecial"));
+					for (int i = 0; i < idx; i++) {
+						colorsUpdate[i] = scanDefault.nextInt() % 5;
+					}
+					colorsUpdate[idx] = 0;
+					for (int i = idx + 1; i < shinyListUpdate.length; i++) {
+						colorsUpdate[i] = scanDefault.nextInt() % 5;
+					}
+					scanDefault.close();
+					PrintStream psDefault = new PrintStream("saveData/colorSpecial");
+					for (int i = 0; i < colorsUpdate.length; i++) {
+						psDefault.println(colorsUpdate[i]);
+					}
+					psDefault.close();
+
+					shinyListUpdate = readUpdate.getShiniesAll();
+					colorsUpdate = new int[shinyListUpdate.length];
+					idx = 0;
+					while (!shinyListUpdate[idx].equals("pokemon_icon_" + dexNum + "_" + formNum + "_shiny.png")) {
+						idx++;
+					}
+					Scanner scanAll = new Scanner(new FileInputStream("saveData/colorAll"));
+					for (int i = 0; i < idx; i++) {
+						colorsUpdate[i] = scanAll.nextInt() % 5;
+					}
+					colorsUpdate[idx] = 0;
+					for (int i = idx + 1; i < shinyListUpdate.length; i++) {
+						colorsUpdate[i] = scanAll.nextInt() % 5;
+					}
+					scanAll.close();
+					PrintStream psAll = new PrintStream("saveData/colorAll");
+					for (int i = 0; i < colorsUpdate.length; i++) {
+						psAll.println(colorsUpdate[i]);
+					}
+					psAll.close();
+					
+					frame.setVisible(false);
+					gui.setVisible(false);
+					new ShinyListGUI(type);
+				} catch (IOException e1) {
+					System.out.println("Could not add shiny: " + e1.getMessage());
+				}
+				frame.setVisible(false);
+			}
+		});
+
+		removeShiny.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String dexNum = enterDex.getText();
+				String formNum = enterForm.getText();
+				String hatNum = enterHat.getText();
+				try {
+					ShinyListReader readUpdate = new ShinyListReader();
+					String[] shinyListUpdate;
+					int[] colorsUpdate;
+					int idx;
+
+					shinyListUpdate = readUpdate.getShiniesAvailableSpecial();
+					colorsUpdate = new int[shinyListUpdate.length - 1];
+					idx = 0;
+					while (!shinyListUpdate[idx].equals("pokemon_icon_" + dexNum + "_" + formNum + "_" + hatNum +"_shiny.png")) {
+						idx++;
+					}
+					Scanner scanDefault = new Scanner(new FileInputStream("saveData/colorSpecial"));
+					for (int i = 0; i < idx; i++) {
+						colorsUpdate[i] = scanDefault.nextInt() % 5;
+					}
+					scanDefault.nextInt();
+					for (int i = idx; i < shinyListUpdate.length - 1; i++) {
+						colorsUpdate[i] = scanDefault.nextInt() % 5;
+					}
+					scanDefault.close();
+					PrintStream psDefault = new PrintStream("saveData/colorSpecial");
+					for (int i = 0; i < colorsUpdate.length; i++) {
+						psDefault.println(colorsUpdate[i]);
+					}
+					psDefault.close();
+
+					shinyListUpdate = readUpdate.getShiniesAll();
+					colorsUpdate = new int[shinyListUpdate.length - 1];
+					idx = 0;
+					while (!shinyListUpdate[idx].equals("pokemon_icon_" + dexNum + "_" + formNum + "_" + hatNum +"_shiny.png")) {
+						idx++;
+					}
+					Scanner scanAll = new Scanner(new FileInputStream("saveData/colorAll"));
+					for (int i = 0; i < idx; i++) {
+						colorsUpdate[i] = scanAll.nextInt() % 5;
+					}
+					scanAll.nextInt();
+					for (int i = idx; i < shinyListUpdate.length - 1; i++) {
+						colorsUpdate[i] = scanAll.nextInt() % 5;
+					}
+					scanAll.close();
+					PrintStream psAll = new PrintStream("saveData/colorAll");
+					for (int i = 0; i < colorsUpdate.length; i++) {
+						psAll.println(colorsUpdate[i]);
+					}
+					psAll.close();
+
+					Scanner scan = new Scanner(new FileInputStream("saveData/shinySpecialAvailable"));
+					String[] nums = new String[read.getShiniesAvailableSpecial().length];
+					int j = 0;
+					while (scan.hasNext()) {
+						String number = scan.next();
+						if (!number.equals("pokemon_icon_" + dexNum + "_" + formNum + "_" + hatNum +"_shiny.png")) {
+							nums[j] = number;
+							j++;
+						}
+					}
+					PrintStream out = new PrintStream("saveData/shinySpecialAvailable");
+					for (int i = 0; i < nums.length - 1; i++) {
+						out.println(nums[i]);
+					}
+					scan.close();
+					out.close();
+
+					frame.setVisible(false);
+					gui.setVisible(false);
+					new ShinyListGUI(type);
+				} catch (IOException e1) {
+					System.out.println("Could not remove shiny");
+				}
 			}
 		});
 	}
