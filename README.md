@@ -2,7 +2,7 @@
 
 Created by Joseph Dasilva
 
-Version 2.0.0, released on July 23rd, 2019
+Version 3.0.0, released on August 10th, 2019
 
 ## SETUP
 To have the checklist run properly, ensure that you have
@@ -56,36 +56,36 @@ Any shiny Pokemon released since then should be
 added through the various addition features found in the
 program.
 
-IF MORE ASSETS MUST BE ADDED:
+If more assets must be added:
+
     -Put normal shiny forms in ShinyDefault
         *Ensure all ShinyDefault files end in 00_shiny.png*
+        
     -Put costume shiny forms in ShinySpecial
-        *Ensure all ShinySpecial files end in 
-         XXX_XX_XX_shiny.png*
+        *Ensure all ShinySpecial files end in XXX_XX_XX_shiny.png*
+         
     -Put alt form shiny forms in ShinyForms
-        *Ensure all ShinyDefault files end in 
-         XXX_XX_shiny.png*
+        *Ensure all ShinyDefault files end in XXX_XX_shiny.png*
         EXAMPLES => Spinda, Giratina-O, Deoxys ATK/DEF/SPD
 
 ## FUNCTIONS
 - Five different list types.
-  -> Default shinies
-  -> Alt form shinies
-  -> Costume shinies
-  -> Default and alt form shinies
-  -> All shinies
+   - Default shinies
+   - Alt form shinies
+   - Costume shinies
+   - Default and alt form shinies
+   - All shinies
 
 - Pokemon backgrounds change between 5 colors when clicked.
 
 - Colors can be saved for future access with the Save 
   Colors button.
-  
+
 - Colors can be cleared and will immediately be saved with
   the Clear Colors button.
 
 - The screenshot button saves a .png file of the UI.
-  -> File can be found in the main project folder as
-     MyShinyChecklist.png
+   - File can be found in the main project folder as MyShinyChecklist.png
 
 - Shiny Pokemon default forms, alt forms, and costume forms
   can be added and will appear in the appropriate lists.
